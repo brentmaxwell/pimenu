@@ -38,6 +38,7 @@ class PiMenu(Frame):
     framestack = []
     icons = {}
     path = ''
+    homepath = os.path.expanduser("~")
     lastinit = 0
 
     def __init__(self, parent):
@@ -55,7 +56,7 @@ class PiMenu(Frame):
 
         :return: None
         """
-        with open(self.path + '/pimenu.yaml', 'r') as f:
+        with open(self.homepath + '/pimenu.yaml', 'r') as f:
             doc = yaml.load(f)
         self.lastinit = os.path.getmtime(self.path + '/pimenu.yaml')
 
