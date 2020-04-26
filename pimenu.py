@@ -37,8 +37,7 @@ class FlatButton(Button):
 class PiMenu(Frame):
     framestack = []
     icons = {}
-    path = ''
-    homepath = os.path.expanduser("~")
+    path = os.path.expanduser("~") + '/.pimenu'
     lastinit = 0
 
     def __init__(self, parent):
@@ -46,7 +45,9 @@ class PiMenu(Frame):
         self.parent = parent
         self.pack(fill=TkC.BOTH, expand=1)
 
-        self.path = os.path.dirname(os.path.realpath(sys.argv[0]))
+        """
+	self.path = os.path.dirname(os.path.realpath(sys.argv[0]))
+	"""
         self.initialize()
 
     def initialize(self):
@@ -56,7 +57,7 @@ class PiMenu(Frame):
 
         :return: None
         """
-        with open(self.homepath + '/pimenu.yaml', 'r') as f:
+        with open(self.path + '/pimenu.yaml', 'r') as f:
             doc = yaml.load(f)
         self.lastinit = os.path.getmtime(self.path + '/pimenu.yaml')
 
